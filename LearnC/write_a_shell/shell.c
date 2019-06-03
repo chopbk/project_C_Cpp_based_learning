@@ -16,3 +16,20 @@ int void main(int argc,char **argc)
     //perform any shutdown/cleanup
     return EXIT_SUCCESS;
 }
+
+void shell_loop(void)
+{
+    char *line;
+    char **args;
+    int status;
+
+    do {
+        printf("> ");
+        line = shell_read_line();
+        args = shell_split_line(line);
+        status = shell_execute(args);
+
+        free(line);
+        free(agrs);
+    } while(status);
+}
