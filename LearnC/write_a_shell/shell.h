@@ -15,4 +15,5 @@ void shell_loop(void);
 char *shell_read_line(void);
 int shell_execute(char **args);
 char **lsh_split_line(char *line);
+int shell_lauch(char **args);
 /*******************END****************************/

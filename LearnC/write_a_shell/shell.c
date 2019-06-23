@@ -58,7 +58,7 @@ char * shell_read_line(void)
 /**
  * @Description: This function Parsing the line command
  */
-char **lsh_split_line(char *line)
+char **shell_split_line(char *line)
 {
   int bufsize = SHELL_TOK_BUFSIZE, position = 0;
   char **tokens = malloc(bufsize *sizeof(char*));
@@ -84,5 +84,32 @@ char **lsh_split_line(char *line)
   }
   tokens[position] = NULL;
   return tokens;
-
 }
+
+/**
+ * @Description: This function launch a shell
+ */
+int shell_lauch(char **args)
+{
+	pid_t pid, wpid;
+	int status;
+	pid = fork();
+	if(pid == 0){
+		//child process
+		if(execvp(args[0], args) == -1){
+			perror("shell error");
+		}
+		exit(EXIT_FAILURE);
+	} else if (pid < 0) {
+		// Error forking
+		perror("shell error");
+	} else {
+		// Parrent process
+		do {
+			wpid = waitpid(pid, &status, WUNTRACED);
+		} while(!WIFEXITED(status) && !WIFSIGNALED(status));
+	}
+	return 1;
+}
+
+
