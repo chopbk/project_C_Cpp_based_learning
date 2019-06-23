@@ -42,7 +42,7 @@ Within the loop, we print a prompt, call a function to read a line, call a funct
 ## Reading a line
 
 ```
-char *lsh_read_line(void)
+char *shell_read_line(void)
 {
   char *line = NULL;
   ssize_t bufsize = 0; // have getline allocate a buffer for us
@@ -59,34 +59,34 @@ With those simplifications, all we need to do is “tokenize” the string using
 
 ```
 
-#define LSH_TOK_BUFSIZE 64
-#define LSH_TOK_DELIM " \t\r\n\a"
-char **lsh_split_line(char *line)
+#define shell_TOK_BUFSIZE 64
+#define shell_TOK_DELIM " \t\r\n\a"
+char **shell_split_line(char *line)
 {
-  int bufsize = LSH_TOK_BUFSIZE, position = 0;
+  int bufsize = shell_TOK_BUFSIZE, position = 0;
   char **tokens = malloc(bufsize * sizeof(char*));
   char *token;
 
   if (!tokens) {
-    fprintf(stderr, "lsh: allocation error\n");
+    fprintf(stderr, "shell: allocation error\n");
     exit(EXIT_FAILURE);
   }
 
-  token = strtok(line, LSH_TOK_DELIM);
+  token = strtok(line, shell_TOK_DELIM);
   while (token != NULL) {
     tokens[position] = token;
     position++;
 
     if (position >= bufsize) {
-      bufsize += LSH_TOK_BUFSIZE;
+      bufsize += shell_TOK_BUFSIZE;
       tokens = realloc(tokens, bufsize * sizeof(char*));
       if (!tokens) {
-        fprintf(stderr, "lsh: allocation error\n");
+        fprintf(stderr, "shell: allocation error\n");
         exit(EXIT_FAILURE);
       }
     }
 
-    token = strtok(NULL, LSH_TOK_DELIM);
+    token = strtok(NULL, shell_TOK_DELIM);
   }
   tokens[position] = NULL;
   return tokens;
@@ -115,3 +115,11 @@ If the exec command returns -1 (or actually, if it returns at all), we know ther
 The second condition (pid < 0) checks whether fork() had an error. If so, we print it and keep going – there’s no handling that error beyond telling the user and letting them decide if they need to quit.
 
 The third condition means that fork() executed successfully. The parent process will land here. We know that the child is going to execute the process, so the parent needs to wait for the command to finish running. We use waitpid() to wait for the process’s state to change. Unfortunately, waitpid() has a lot of options (like exec()). Processes can change state in lots of ways, and not all of them mean that the process has ended. A process can either exit (normally, or with an error code), or it can be killed by a signal. So, we use the macros provided with waitpid() to wait until either the processes are exited or killed. Then, the function finally returns a 1, as a signal to the calling function that we should prompt for input again.
+
+
+## Shell Builtins 
+There are three parts to this code. The first part contains forward declarations of my functions. A forward declaration is when you declare (but don’t define) something, so that you can use its name before you define it. The reason I do this is because shell_help() uses the array of builtins, and the arrays contain shell_help(). The cleanest way to break this dependency cycle is by forward declaration.
+
+The next part is an array of builtin command names, followed by an array of their corresponding functions. This is so that, in the future, builtin commands can be added simply by modifying these arrays, rather than editing a large “switch” statement somewhere in the code. If you’re confused by the declaration of builtin_func, that’s OK! I am too. It’s an array of function pointers (that take array of strings and return an int). Any declaration involving function pointers in C can get really complicated. I still look up how function pointers are declared myself!
+
+Finally, I implement each function. The shell_cd() function first checks that its second argument exists, and prints an error message if it doesn’t. Then, it calls chdir(), checks for errors, and returns. The help function prints a nice message and the names of all the builtins. And the exit function returns 0, as a signal for the command loop to terminate.
