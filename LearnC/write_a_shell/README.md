@@ -123,3 +123,34 @@ There are three parts to this code. The first part contains forward declarations
 The next part is an array of builtin command names, followed by an array of their corresponding functions. This is so that, in the future, builtin commands can be added simply by modifying these arrays, rather than editing a large “switch” statement somewhere in the code. If you’re confused by the declaration of builtin_func, that’s OK! I am too. It’s an array of function pointers (that take array of strings and return an int). Any declaration involving function pointers in C can get really complicated. I still look up how function pointers are declared myself!
 
 Finally, I implement each function. The shell_cd() function first checks that its second argument exists, and prints an error message if it doesn’t. Then, it calls chdir(), checks for errors, and returns. The help function prints a nice message and the names of all the builtins. And the exit function returns 0, as a signal for the command loop to terminate.
+
+
+## Putting it all together
+
+hat’s all the code that goes into the shell. If you’ve read along, you should understand completely how the shell works. To try it out (on a Linux machine), you would need to copy these code segments into a file (main.c), and compile it. Make sure to only include one implementation of lsh_read_line(). You’ll need to include the following headers at the top. I’ve added notes so that you know where each function comes from.
+```
+#include <sys/wait.h>
+  waitpid() and associated macros
+#include <unistd.h>
+  chdir()
+  fork()
+  exec()
+  pid_t
+#include <stdlib.h>
+  malloc()
+  realloc()
+  free()
+  exit()
+  execvp()
+  EXIT_SUCCESS, EXIT_FAILURE
+#include <stdio.h>
+  fprintf()
+  printf()
+  stderr
+  getchar()
+  perror()
+#include <string.h>
+  strcmp()
+  strtok()
+```
+Once you have the code and headers, it should be as simple as running gcc -o main main.c to compile it, and then ./main to run it.
