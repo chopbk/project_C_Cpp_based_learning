@@ -16,7 +16,7 @@ Toàn bộ code của bài viết này vào khoảng 200 dòng code và sẽ t�
 # Nộidung 
 1. [Giới thiệu](/LearnC/write_a_hash_table/01-introduction)
 2. [Cấu trúc bảng băm](/LearnC/write_a_hash_table/02-hash-table)
-3. [hàm băm](/LearnC/write_a_hash_table/03-hashing)
+3. [Các hàm băm](/LearnC/write_a_hash_table/03-hashing)
 4. [Xử lý đụng độ](/LearnC/write_a_hash_table/04-collisions)
 5. [Các hàm sử dụng](/LearnC/write_a_hash_table/05-methods)
 6. [Thay đổi kích thước bảng](/LearnC/write_a_hash_table/06-resizing)
