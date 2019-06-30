@@ -27,3 +27,5 @@ static ht_item *ht_new_item(const char *k, const char *v);
 static void ht_del_item(ht_item* i);
 //@des: This function delete a hash table
 void ht_del_hash_table(ht_hash_table* ht) ;
+//@des: hash fucntion
+static int ht_hash(const char* s, const int prime_num, const int hash_size)

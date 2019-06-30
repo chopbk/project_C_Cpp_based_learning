@@ -50,3 +50,16 @@ void ht_del_hash_table(ht_hash_table* ht) {
     free(ht->items);
     free(ht);
 }
+
+/* 
+ * @des: hash function
+ * */
+static int ht_hash(const char* s, const int prime_num, const int hash_size) {
+    long hash = 0;
+    const int len_s = strlen(s);
+    for(int i = 0; i < len_s; i++) {
+        hash += (long)pow(prime_num,len_s - (i+1)) * s[i];
+        hash = hash%hash_size;
+    }
+    return (int)hash;
+}
