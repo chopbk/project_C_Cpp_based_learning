@@ -20,7 +20,7 @@ Toàn bộ code của bài viết này vào khoảng 200 dòng code và sẽ t�
 4. [Xử lý đụng độ](/LearnC/write_a_hash_table/04-collisions)
 5. [Các hàm sử dụng](/LearnC/write_a_hash_table/05-methods)
 6. [Thay đổi kích thước bảng](/LearnC/write_a_hash_table/06-resizing)
-6. [Phụ lục: Phương pháp xử lý đụng độ khác](/LearnC/write_a_hash_table/07-appendix)
+6. [Phụ lục: Các phương pháp xử lý đụng độ khác](/LearnC/write_a_hash_table/07-appendix)
 
 # Tácgiả
 

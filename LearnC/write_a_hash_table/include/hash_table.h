@@ -29,3 +29,7 @@ static void ht_del_item(ht_item* i);
 void ht_del_hash_table(ht_hash_table* ht) ;
 //@des: hash fucntion
 static int ht_hash(const char* s, const int prime_num, const int hash_size)
+//@des: double hashing function
+static int ht_get_hash(
+    const char *s, const int num_buckets, const int attempt
+) 

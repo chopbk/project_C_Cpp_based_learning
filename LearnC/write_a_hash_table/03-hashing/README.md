@@ -66,7 +66,7 @@ Việc tồn tại tập bệnh lý này có nghĩa là không có hàm băm nà
 
 Dữ liệu không mong muốn cũng gây ra một số vấn đề bảo mật. Nếu người dùng gọi các hàm chức năng qua tập các khóa gây ra các vấn đề va chạm, việc tìm kiếm sẽ mất nhiều thời gian hơn (`O(n)`) so với bình thường (`O(1)`). Đều này có thể gây ra việc từ chối dịch vụ trong các hệ thống sử dụng bảng băm như DNS và một số dịch vụ web nhất định.
 
-Bài tiếp theo: [Xử lý va chạm](/LearnC/write_a_hash_table/04-collisionsg)
+Bài tiếp theo: [Xử lý va chạm](/LearnC/write_a_hash_table/04-collisions)
 [Nội dung bài viết](https://github.com/chopbk/project_C_Cpp_based_learning/tree/master/LearnC/write_a_hash_table#Nộidung)
 
 
