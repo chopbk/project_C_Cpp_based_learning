@@ -32,4 +32,12 @@ static int ht_hash(const char* s, const int prime_num, const int hash_size)
 //@des: double hashing function
 static int ht_get_hash(
     const char *s, const int num_buckets, const int attempt
-) 
+);
+
+//Define hash funtions API
+//@des: This function insert a new key-value pair
+void ht_insert(ht_hash_table* ht, const char* key, const char* value);
+//@des: This function search a key value in hash tables
+char* ht_search(ht_hash_table* ht, const char* key);
+//@des: This function delete a key value in hash tables
+void ht_delete(ht_hash_table* h, const char* key);
