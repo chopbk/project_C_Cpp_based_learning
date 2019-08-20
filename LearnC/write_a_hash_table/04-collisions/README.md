@@ -37,5 +37,5 @@ static int ht_get_hash(
 }
 ```
 
-Next section: [Các hàm sử dụng](/LearnC/write_a_hash_table/05-methods)
+Next section: [Các hàm API](/LearnC/write_a_hash_table/05-methods)
 [Nội dung bài viết](https://github.com/chopbk/project_C_Cpp_based_learning/tree/master/LearnC/write_a_hash_table#Nộidung)
