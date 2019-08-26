@@ -1,2 +1,9 @@
 # project_C_based_learning
-A list of programming tutorials in which learners build an application from scratch. These tutorials are divided into different primary programming languages. Some have intermixed technologies and languages.
+Một danh sách các tutorial để học cách xây dựng một ứng dụng sử dụng ngôn ngữ C
+## Các bài viết
+- [Write a hash table](/LearnC/write_a_hash_table/)
+- [Write a shell](/LearnC/write_a_shell/)
+- [Implementing a key value store](/LearnC/implementing_a_key_value_store/)
+- [Build a simple database](/LearnC/build_a_simple_database/)
+
+
