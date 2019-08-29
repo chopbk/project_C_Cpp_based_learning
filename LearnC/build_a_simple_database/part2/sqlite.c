@@ -38,6 +38,7 @@ InputBuffer* new_input_buffer() {
  * @Des: Function for print promt
  */
 void print_prompt() { printf("db > "); }
+
 /*
  * @Des: Function for read command line
  */
@@ -54,6 +55,7 @@ void read_input(InputBuffer* input_buffer) {
   input_buffer->input_length = bytes_read - 1;
   input_buffer->buffer[bytes_read - 1] = 0;
 }
+
 /*
  * @Des: Function for free input buffer
  */
